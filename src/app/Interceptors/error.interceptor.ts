@@ -4,6 +4,7 @@ import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/c
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { NotificationService } from '../notification/notification.service';
+import { NotificalionType } from '../models/notification';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -17,7 +18,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 location.reload(true);
             }
             const error = `${err.status}: ${err.message}`;
-            this.notificationService.error(error);
+            this.notificationService.message(error, NotificalionType.bad);
             return throwError(error);
         }));
     }

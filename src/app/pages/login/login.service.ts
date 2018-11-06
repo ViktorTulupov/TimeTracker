@@ -1,18 +1,29 @@
+import { User } from './../../models/user';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class LoginService {
+    private unAutorized = 'unautorized';
+    private behaviorSubject: BehaviorSubject<string>;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, ) {
+        const loggedUser: User = JSON.parse(localStorage.getItem('loggedUser'));
+        if (loggedUser) {
+            this.behaviorSubject = new BehaviorSubject(loggedUser.name);
+        } else {
+            this.behaviorSubject = new BehaviorSubject(this.unAutorized);
+        }
+    }
 
-    login(login: string, password: string): Observable<any> {
-        return this.http.post<any>(`/users/login`, { login: login, password: password })
+    login(login: string, password: string): Observable<User> {
+        return this.http.post<User>(`/users/login`, { login: login, password: password })
             .pipe(map(user => {
-                if (user && user.token) {
+                if (user) {
                     localStorage.setItem('loggedUser', JSON.stringify(user));
+                    this.behaviorSubject.next(user.name);
                 }
                 return user;
             }));
@@ -20,5 +31,10 @@ export class LoginService {
 
     logout() {
         localStorage.removeItem('loggedUser');
+        this.behaviorSubject.next(this.unAutorized);
+    }
+
+    get subject(): BehaviorSubject<any> {
+        return this.behaviorSubject;
     }
 }
