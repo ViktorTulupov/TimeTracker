@@ -10,10 +10,10 @@ import { LoginService } from './pages/login/login.service';
 import { ErrorInterceptor } from './Interceptors/error.interceptor';
 import { JwtInterceptor } from './Interceptors/jwt.interceptor';
 import { ApiInterceptor } from './Interceptors/api.interceptor';
-import { NotificationComponent } from './notification/notification.component';
-import { NotificationService } from './notification/notification.service';
-import { LoggedUserComponent } from './logged-user/logged-user.component';
-import { LoggedUserGuard } from './logged-user/logged-user.guard';
+import { NotificationComponent } from './components/notification/notification.component';
+import { NotificationService } from './components/notification/notification.service';
+import { LoggedUserComponent } from './components/logged-user/logged-user.component';
+import { LoggedUserGuard } from './components/logged-user/logged-user.guard';
 
 @NgModule({
     declarations: [

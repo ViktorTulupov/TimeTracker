@@ -1,5 +1,5 @@
-import { LoginService } from './../pages/login/login.service';
-import { User } from './../models/user';
+import { User } from './../../models/user';
+import { LoginService } from './../../pages/login/login.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 

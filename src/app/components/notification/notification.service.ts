@@ -1,4 +1,4 @@
-import { Notification, NotificalionType } from './../models/notification';
+import { Notification, NotificalionType } from './../../models/notification';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Router, NavigationStart } from '@angular/router';

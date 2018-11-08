@@ -1,3 +1,4 @@
+import { CalendarComponent } from './calendar/calendar.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeRouingModule } from './home.routing.module';
@@ -8,7 +9,10 @@ import { HomeComponent } from './home.component';
     CommonModule,
     HomeRouingModule
   ],
-  declarations: [HomeComponent]
+  declarations: [
+    HomeComponent,
+    CalendarComponent
+  ]
 })
 
 export class HomeModule { }
