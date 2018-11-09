@@ -1,4 +1,6 @@
 import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarWeekComponent } from './calendar/calendar-week/calendar-week.component';
+import { CalendrDayComponent } from './calendar/calendr-day/calendr-day.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeRouingModule } from './home.routing.module';
@@ -11,7 +13,9 @@ import { HomeComponent } from './home.component';
   ],
   declarations: [
     HomeComponent,
-    CalendarComponent
+    CalendarComponent,
+    CalendarWeekComponent,
+    CalendrDayComponent
   ]
 })
 
