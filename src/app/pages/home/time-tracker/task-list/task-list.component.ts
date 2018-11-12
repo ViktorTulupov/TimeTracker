@@ -1,5 +1,5 @@
 import { Task } from './../../../../models/task';
-import { Component, OnInit, Input, Output, EventEmitter, HostListener, HostBinding } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
@@ -12,7 +12,9 @@ export class TaskListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.tasks = [null, null, null, null, null];
+    if (!this.tasks) {
+      this.tasks = [];
+    }
   }
 
 }

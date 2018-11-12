@@ -1,1 +1,2 @@
-<app-task *ngFor="let week of tasks"></app-task>
+<p>Task list:</p>
+<app-task *ngFor="let task of tasks" [task]="task"></app-task>

@@ -1,3 +1,4 @@
+import { Task } from './../../../../models/task';
 import { TaskListService } from '../task-list/time-tracker.service';
 import { WeekDay } from './../../../../models/weekDay.enum';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
@@ -14,6 +15,8 @@ export class CalendarComponent implements OnInit {
   @Input() taskLoad;
   @Input() month;
   @Input() year;
+
+  @Output() selectDateEvent = new EventEmitter<Task[]>();
 
   weeks: CalendarDay[][];
 
@@ -85,6 +88,8 @@ export class CalendarComponent implements OnInit {
       });
     });
     event.isSelect = true;
+
+    this.selectDateEvent.emit(event.tasks);
   }
 
 }
