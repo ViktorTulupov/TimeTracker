@@ -1,1 +1,2 @@
-<app-calendar-week *ngFor="let week of weeks" [week]=week></app-calendar-week>
+<app-calendar-header></app-calendar-header>
+<app-calendar-week *ngFor="let week of weeks" [week]=week (selecWeekDayEvent)="selectDate($event)"></app-calendar-week>

@@ -1,14 +1,37 @@
 :host {
     flex: 1;
-    border: 2px solid #f9f9f9;
-    // margin-top: -1px;
-    // margin-left: -1px;
+    border: 2px solid transparent;
+    // font-size: 80%;
   }
 
   div {
     padding: 10px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid #007bff;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    color: #007bff;
   }
+
   .weekend {
     color: #d40217;
-    background-color: #f8d7da;
+    // background-color: #f8d7da;
+    border: 1px solid #d40217;
   }
+
+  .now {
+     color: #28a745;
+     border: 1px solid #28a745;
+    background-color:rgba(0, 255, 0, 0.5);
+  }
+
+  .selected {
+    background-color:rgba(0, 123, 255, 0.5);
+  }
+  

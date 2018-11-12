@@ -1,0 +1,12 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+  }
+
+div {
+  flex: 1;
+    font-size: 60%;
+    color: #3d3d3d;
+    text-align: center;
+}

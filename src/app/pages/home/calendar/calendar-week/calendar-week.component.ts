@@ -9,10 +9,15 @@ import { Component, OnInit, Input, Output, EventEmitter, HostListener, HostBindi
 export class CalendarWeekComponent implements OnInit {
 
   @Input() week: CalendarDay[];
+  @Output() selecWeekDayEvent = new EventEmitter<CalendarDay>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  selectWeekDay(event: CalendarDay) {
+    this.selecWeekDayEvent.emit(event);
   }
 
 }

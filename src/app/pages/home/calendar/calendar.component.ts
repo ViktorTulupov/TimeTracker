@@ -9,42 +9,46 @@ import { CalendarDay } from './../../../models/calendarDay';
 })
 export class CalendarComponent implements OnInit {
 
-  month = 12;
-  year = 2018;
+  @Input() month;
+  @Input() year;
+
   weeks: CalendarDay[][];
-  now: Date;
 
   constructor() {
-    this.now = new Date();
     this.weeks = [];
   }
 
   ngOnInit() {
+    if (!this.month || !this.year) {
+      const now = new Date();
+      this.month = now.getMonth();
+      this.year = now.getFullYear();
+    }
     this.generateMonthData();
   }
 
   daysInMonth(): number {
-    const date = new Date(this.year, this.month, 0);
+    const date = new Date(this.year, this.month - 1, 0);
     return date.getDate();
   }
 
   firstEmptyDays(): number {
-    const date = new Date(this.year, this.month - 1, 1);
+    const date = new Date(this.year, this.month, 1);
     const day = date.getDay();
     switch (day) {
-      case WeekDay.Monday:
+      case WeekDay.Mon:
         return 0;
-      case WeekDay.Tuesday:
+      case WeekDay.Tue:
         return 1;
-      case WeekDay.Wednesday:
+      case WeekDay.Wed:
         return 2;
-      case WeekDay.Thursday:
+      case WeekDay.Thu:
         return 3;
-      case WeekDay.Friday:
+      case WeekDay.Fri:
         return 4;
-      case WeekDay.Saturday:
+      case WeekDay.Sat:
         return 5;
-      case WeekDay.Sunday:
+      case WeekDay.Sun:
         return 6;
     }
   }
@@ -62,9 +66,8 @@ export class CalendarComponent implements OnInit {
         if (monthDay <= firstEmptyDays || monthDay > (daysInMonth + firstEmptyDays)) {
           days.push(new CalendarDay(null, false));
         } else {
-          const date = new Date(this.year, this.month - 1, (monthDay - firstEmptyDays));
-          const weekDay = date.getDay() > 5;
-          days.push(new CalendarDay(date, weekDay));
+          const date = new Date(this.year, this.month, (monthDay - firstEmptyDays));
+          days.push(new CalendarDay(date));
         }
         monthDay++;
       }
@@ -72,4 +75,12 @@ export class CalendarComponent implements OnInit {
     }
   }
 
+  selectDate(event: CalendarDay) {
+    this.weeks.forEach(week => {
+      week.forEach(day => {
+        day.isSelect = false;
+      });
+    });
+    event.isSelect = true;
+  }
 }

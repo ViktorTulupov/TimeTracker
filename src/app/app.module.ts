@@ -20,7 +20,7 @@ import { LoggedUserGuard } from './components/logged-user/logged-user.guard';
         AppComponent,
         LoginComponent,
         NotificationComponent,
-        LoggedUserComponent,
+        LoggedUserComponent
     ],
     imports: [
         BrowserModule,

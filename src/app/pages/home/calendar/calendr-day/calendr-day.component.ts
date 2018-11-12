@@ -11,16 +11,39 @@ import { Component, OnInit, Input, Output, EventEmitter, HostListener, HostBindi
 export class CalendrDayComponent implements OnInit {
 
   @Input() day: CalendarDay;
+  @Output() selectDayEvent = new EventEmitter<CalendarDay>();
 
   isWeekEnd = false;
+  isNow = false;
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     if (this.day && this.day.date) {
-      const weekDay = this.day.date.getDay();
-      this.isWeekEnd = weekDay === WeekDay.Saturday || weekDay === WeekDay.Sunday;
+      this.isWeekEnd = this.checkWeekEnd(this.day.date);
+      this.isNow = this.checkNow(this.day.date);
     }
+  }
+
+  checkWeekEnd(date: Date): boolean {
+    const day = this.day.date.getDay();
+    const isWeekEnd = day === WeekDay.Sat || day === WeekDay.Sun;
+    return isWeekEnd;
+  }
+
+  checkNow(date: Date): boolean {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth();
+    const day = now.getDate();
+    const isNow = date.getFullYear() === year
+      && date.getMonth() === month
+      && date.getDate() === day;
+    return isNow;
+  }
+
+  selectDay(event: any) {
+    this.selectDayEvent.emit(this.day);
   }
 
 }

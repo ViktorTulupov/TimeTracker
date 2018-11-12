@@ -1,1 +1,3 @@
-<div [ngClass]="{'weekend': isWeekEnd}">{{day.date | date: 'dd'}} </div>
+<div *ngIf="day.date" [ngClass]="{'now': isNow , 'weekend': isWeekEnd, 'selected': day.isSelect }" (click)="selectDay($event)">
+    {{day.date | date: 'dd'}}
+</div>
