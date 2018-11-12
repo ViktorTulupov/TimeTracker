@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter, HostListener, HostBindi
 })
 export class CalendarWeekComponent implements OnInit {
 
+  @Input() taskLoad: boolean;
   @Input() week: CalendarDay[];
   @Output() selecWeekDayEvent = new EventEmitter<CalendarDay>();
 

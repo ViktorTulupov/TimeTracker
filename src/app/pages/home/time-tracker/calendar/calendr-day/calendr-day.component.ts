@@ -1,30 +1,39 @@
 import { WeekDay } from './../../../../../models/weekDay.enum';
 import { CalendarDay } from './../../../../../models/calendarDay';
 import { Component, OnInit, Input, Output, EventEmitter, HostListener, HostBinding } from '@angular/core';
-import { CalendarService } from '../calendar.service';
+import { TaskListService } from '../../task-list/time-tracker.service';
 
 
 @Component({
   selector: 'app-calendr-day',
   templateUrl: './calendr-day.component.html',
   styleUrls: ['./calendr-day.component.scss'],
-  providers: [CalendarService]
+  providers: [TaskListService]
 })
 
 export class CalendrDayComponent implements OnInit {
 
+  @Input() taskLoad = false;
   @Input() day: CalendarDay;
   @Output() selectDayEvent = new EventEmitter<CalendarDay>();
 
   isWeekEnd = false;
   isNow = false;
+  taskTime = 0;
 
-  constructor(private calendarService: CalendarService) { }
+  constructor(private taskService: TaskListService) { }
 
   ngOnInit() {
     if (this.day && this.day.date) {
       this.isWeekEnd = this.checkWeekEnd(this.day.date);
-      this.isNow = this.calendarService.compareDate(new Date(), this.day.date);
+      this.isNow = this.taskService.compareDate(new Date(), this.day.date);
+
+      if (this.taskLoad && this.day.tasks) {
+        this.taskTime = 0;
+        this.day.tasks.forEach(task => {
+          this.taskTime += task.time;
+        });
+      }
     }
   }
 

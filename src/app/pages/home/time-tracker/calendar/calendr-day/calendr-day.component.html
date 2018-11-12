@@ -1,3 +1,10 @@
-<div *ngIf="day.date" [ngClass]="{'now': isNow , 'weekend': isWeekEnd, 'selected': day.isSelect }" (click)="selectDay($event)">
+<div *ngIf="day.date" (click)="selectDay($event)" [ngClass]="{'now': isNow, 
+                                                              'weekend': isWeekEnd, 
+                                                              'selected': day.isSelect }">
     {{day.date | date: 'dd'}}
+    <app-task-indicator *ngIf="taskLoad" [ngClass]="{'deficiency': taskTime > 0, 
+                                                     'complete': taskTime === 8, 
+                                                     'upward': taskTime > 8,
+                                                     'excess': taskTime > 24 }">
+    </app-task-indicator>
 </div>

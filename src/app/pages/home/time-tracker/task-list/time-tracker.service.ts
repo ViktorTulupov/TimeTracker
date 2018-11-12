@@ -1,10 +1,10 @@
-import { Task } from './../../../../models/task';
+import { Task } from '../../../../models/task';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CalendarService {
+export class TaskListService {
 
   constructor() { }
 
@@ -18,8 +18,8 @@ export class CalendarService {
   }
 
   getTasks(date: Date): Task[] {
-    const task = new Task(new Date(), '', '', 1, '');
-    const tasks = [task, task, task];
+    const task = new Task(new Date(), '', '', 3, '');
+    const tasks = [task, task, task, task];
     return tasks;
   }
 

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Task } from './../../../../models/task';
+import { Component, OnInit, Input, Output, EventEmitter, HostListener, HostBinding } from '@angular/core';
 @Component({
   selector: 'app-task-list',
   templateUrl: './task-list.component.html',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TaskListComponent implements OnInit {
 
+  @Input() tasks: Task[];
+
   constructor() { }
 
   ngOnInit() {
+    this.tasks = [null, null, null, null, null];
   }
 
 }

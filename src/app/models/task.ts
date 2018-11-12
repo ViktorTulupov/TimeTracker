@@ -4,6 +4,7 @@ export class Task {
         public project: string,
         public task: string,
         public time: number,
-        public comment: string = null) {
+        public comment: string,
+        public id: number = null) {
     }
 }

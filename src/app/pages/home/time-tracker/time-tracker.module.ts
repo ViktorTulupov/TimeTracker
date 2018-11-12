@@ -1,3 +1,5 @@
+import { TaskIndicatorComponent } from './calendar/task-indicator/task-indicator.component';
+import { TaskComponent } from './task-list/task/task.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TimeTrackerComponent } from './time-tracker.component';
@@ -17,7 +19,9 @@ import { TaskListComponent } from './task-list/task-list.component';
     CalendarWeekComponent,
     CalendrDayComponent,
     CalendarHeaderComponent,
-    TaskListComponent
+    TaskListComponent,
+    TaskComponent,
+    TaskIndicatorComponent
   ]
 })
 export class TimeTrackerModule { }

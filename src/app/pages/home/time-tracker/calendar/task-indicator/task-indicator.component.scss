@@ -1,0 +1,21 @@
+:host {
+    width: 100%;
+    padding: 0.5px;
+}
+
+
+:host.deficiency {
+  background-color: #ffc107;
+}
+
+:host.complete{
+  background-color: #28a745;
+}
+
+:host.upward {
+  background-color: #fd7e14;
+}
+
+:host.excess {
+  background-color: #dc3545;
+}

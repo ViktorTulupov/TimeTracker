@@ -1,23 +1,23 @@
-import { CalendarService } from './calendar.service';
-import { Task } from './../../../../models/task';
+import { TaskListService } from '../task-list/time-tracker.service';
 import { WeekDay } from './../../../../models/weekDay.enum';
-import { Component, OnInit, Input, Output, EventEmitter, HostListener, HostBinding } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CalendarDay } from './../../../../models/calendarDay';
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
-  providers: [CalendarService]
+  providers: [TaskListService]
 })
 export class CalendarComponent implements OnInit {
 
+  @Input() taskLoad;
   @Input() month;
   @Input() year;
 
   weeks: CalendarDay[][];
 
-  constructor(private calendarService: CalendarService ) {
+  constructor(private taskService: TaskListService ) {
     this.weeks = [];
   }
 
@@ -70,7 +70,7 @@ export class CalendarComponent implements OnInit {
           days.push(new CalendarDay(null, null, false));
         } else {
           const date = new Date(this.year, this.month, (monthDay - firstEmptyDays));
-          days.push(new CalendarDay(date, this.calendarService.getTasks(date)));
+          days.push(new CalendarDay(date, this.taskService.getTasks(date)));
         }
         monthDay++;
       }

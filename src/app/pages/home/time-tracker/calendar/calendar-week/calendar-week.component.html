@@ -1,1 +1,1 @@
-<app-calendr-day *ngFor="let day of week" [day]=day (selectDayEvent)="selectWeekDay($event)"></app-calendr-day>
+<app-calendr-day *ngFor="let day of week" [day]=day [taskLoad]="taskLoad" (selectDayEvent)="selectWeekDay($event)"></app-calendr-day>
