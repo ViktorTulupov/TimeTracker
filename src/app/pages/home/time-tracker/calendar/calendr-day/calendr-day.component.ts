@@ -1,11 +1,14 @@
-import { WeekDay } from './../../../../models/weekDay.enum';
-import { CalendarDay } from './../../../../models/calendarDay';
+import { WeekDay } from './../../../../../models/weekDay.enum';
+import { CalendarDay } from './../../../../../models/calendarDay';
 import { Component, OnInit, Input, Output, EventEmitter, HostListener, HostBinding } from '@angular/core';
+import { CalendarService } from '../calendar.service';
+
 
 @Component({
   selector: 'app-calendr-day',
   templateUrl: './calendr-day.component.html',
-  styleUrls: ['./calendr-day.component.scss']
+  styleUrls: ['./calendr-day.component.scss'],
+  providers: [CalendarService]
 })
 
 export class CalendrDayComponent implements OnInit {
@@ -16,12 +19,12 @@ export class CalendrDayComponent implements OnInit {
   isWeekEnd = false;
   isNow = false;
 
-  constructor() { }
+  constructor(private calendarService: CalendarService) { }
 
   ngOnInit() {
     if (this.day && this.day.date) {
       this.isWeekEnd = this.checkWeekEnd(this.day.date);
-      this.isNow = this.checkNow(this.day.date);
+      this.isNow = this.calendarService.compareDate(new Date(), this.day.date);
     }
   }
 
@@ -29,17 +32,6 @@ export class CalendrDayComponent implements OnInit {
     const day = this.day.date.getDay();
     const isWeekEnd = day === WeekDay.Sat || day === WeekDay.Sun;
     return isWeekEnd;
-  }
-
-  checkNow(date: Date): boolean {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = now.getMonth();
-    const day = now.getDate();
-    const isNow = date.getFullYear() === year
-      && date.getMonth() === month
-      && date.getDate() === day;
-    return isNow;
   }
 
   selectDay(event: any) {

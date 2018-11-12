@@ -1,0 +1,13 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+ }
+
+ div {
+    text-align: left;
+    white-space: nowrap;
+    vertical-align: text-top;
+    padding: 50px 30px;
+  }

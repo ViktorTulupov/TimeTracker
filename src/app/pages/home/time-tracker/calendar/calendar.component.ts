@@ -1,11 +1,14 @@
-import { WeekDay } from './../../../models/weekDay.enum';
+import { CalendarService } from './calendar.service';
+import { Task } from './../../../../models/task';
+import { WeekDay } from './../../../../models/weekDay.enum';
 import { Component, OnInit, Input, Output, EventEmitter, HostListener, HostBinding } from '@angular/core';
-import { CalendarDay } from './../../../models/calendarDay';
+import { CalendarDay } from './../../../../models/calendarDay';
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss']
+  styleUrls: ['./calendar.component.scss'],
+  providers: [CalendarService]
 })
 export class CalendarComponent implements OnInit {
 
@@ -14,7 +17,7 @@ export class CalendarComponent implements OnInit {
 
   weeks: CalendarDay[][];
 
-  constructor() {
+  constructor(private calendarService: CalendarService ) {
     this.weeks = [];
   }
 
@@ -64,10 +67,10 @@ export class CalendarComponent implements OnInit {
       const days: CalendarDay[] = [];
       for (let day = 0; day < 7; day++) {
         if (monthDay <= firstEmptyDays || monthDay > (daysInMonth + firstEmptyDays)) {
-          days.push(new CalendarDay(null, false));
+          days.push(new CalendarDay(null, null, false));
         } else {
           const date = new Date(this.year, this.month, (monthDay - firstEmptyDays));
-          days.push(new CalendarDay(date));
+          days.push(new CalendarDay(date, this.calendarService.getTasks(date)));
         }
         monthDay++;
       }
@@ -83,4 +86,5 @@ export class CalendarComponent implements OnInit {
     });
     event.isSelect = true;
   }
+
 }

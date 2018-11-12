@@ -1,4 +1,4 @@
-import { WeekDay } from './../../../../models/weekDay.enum';
+import { WeekDay } from './../../../../../models/weekDay.enum';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

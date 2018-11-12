@@ -1,4 +1,4 @@
-import { CalendarDay } from '../../../../models/calendarDay';
+import { CalendarDay } from '../../../../../models/calendarDay';
 import { Component, OnInit, Input, Output, EventEmitter, HostListener, HostBinding } from '@angular/core';
 
 @Component({
