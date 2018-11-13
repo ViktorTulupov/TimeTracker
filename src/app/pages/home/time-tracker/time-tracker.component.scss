@@ -3,9 +3,12 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: stretch;
-    width: 1000px;
 }
 
-.padding {
-    padding: 0px 30px;
+app-calendar {
+    padding: 0px 50px;
+}
+
+app-task-list {
+    padding: 0px 50px;
 }

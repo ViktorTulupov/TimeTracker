@@ -1,2 +1,4 @@
-<app-calendar-header></app-calendar-header>
-<app-calendar-week *ngFor="let week of weeks" [week]=week [taskLoad]="taskLoad" (selecWeekDayEvent)="selectDate($event)"></app-calendar-week>
+<div>
+    <app-calendar-header></app-calendar-header>
+    <app-calendar-week *ngFor="let week of weeks" [week]=week [taskLoad]="taskLoad" (selecWeekDayEvent)="selectDate($event)"></app-calendar-week>
+</div>
