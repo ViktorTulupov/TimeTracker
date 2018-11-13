@@ -8,7 +8,6 @@ import { first } from 'rxjs/operators';
   selector: 'app-login',
   templateUrl: 'login.component.html',
   styleUrls: ['login.component.scss'],
-  // providers: [LoginService]
 })
 
 export class LoginComponent implements OnInit {
@@ -34,7 +33,7 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  get f() {
+  get controls() {
     return this.loginForm.controls;
   }
 
@@ -46,7 +45,7 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.loginService.login(this.f.username.value, this.f.password.value)
+    this.loginService.login(this.controls.username.value, this.controls.password.value)
       .pipe(first())
       .subscribe(
         data => {
