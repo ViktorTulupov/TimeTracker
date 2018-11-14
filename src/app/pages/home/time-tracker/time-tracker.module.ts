@@ -8,10 +8,12 @@ import { CalendarComponent } from './calendar/calendar.component';
 import { CalendarWeekComponent } from './calendar/calendar-week/calendar-week.component';
 import { CalendrDayComponent } from './calendar/calendr-day/calendr-day.component';
 import { TaskListComponent } from './task-list/task-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule
   ],
   declarations: [
     TimeTrackerComponent,

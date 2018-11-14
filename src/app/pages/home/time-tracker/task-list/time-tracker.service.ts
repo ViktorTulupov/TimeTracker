@@ -19,7 +19,7 @@ export class TaskListService {
 
   getTasks(date: Date): Task[] {
     if (this.compareDate(new Date(), date)) {
-      const task = new Task(new Date(), 'TimeTracker', '0001', 2, 'Create project');
+      const task = new Task(new Date(), 'TimeTracker', '0001', 5, 'Create project');
       const tasks = [task, task, task, task];
       return tasks;
     }

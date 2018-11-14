@@ -1,0 +1,44 @@
+.list-header {
+    font-size: 80%;
+}
+
+img {
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    padding: 0px 0px;
+}
+
+.img-add {
+    padding: 8px 0px 8px 0px;
+}
+
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    //border-radius: 0.25rem;
+    //border: 1px solid #007bff;
+}
+
+input {
+    width: 100px;
+    height: 18px;
+    padding: 2px 2px;
+    font-size: 70%;
+    border-radius: 0.25rem;
+    margin: 0;
+    margin-right: 8px;
+}
+
+input.in-task {
+    width: 50px;
+}
+input.in-time {
+    width: 50px;
+}
+
+input.in-comment {
+    width: 150px;
+}

@@ -1,2 +1,31 @@
-<p>Task list:</p>
+<div class="list-header">Task list:</div>
+<div *ngIf=!isNewTask>
+    <img src="img/plus.svg" (click)="newTask()" class="img-add">
+</div>
+<div *ngIf=isNewTask>
+    <form [formGroup]="taskForm">
+        <div>
+            <label for="project">Projet:</label>
+            <input type="text" formControlName="project" [ngClass]="{ 'error': submitted && controls.project.errors }" />
+        </div>
+        <div>
+            <label for="task">Task:</label>
+            <input type="text" formControlName="task" class="in-task" [ngClass]="{ 'error': submitted && controls.task.errors }" />
+        </div>
+        <div>
+            <label for="time">Time:</label>
+            <input type="number" formControlName="time" class="in-time" [ngClass]="{ 'error': submitted && controls.time.errors }" />
+        </div>
+        <div>
+            <label for="comment">Comment:</label>
+            <input type="text" formControlName="comment" class="in-comment" />
+        </div>
+        <div>
+            <img src="img/checked.svg" (click)="createNewTask()">
+        </div>
+        <div>
+            <img src="img/close.svg" (click)="rollbackTask()">
+        </div>
+    </form>
+</div>
 <app-task *ngFor="let task of tasks" [task]="task"></app-task>
