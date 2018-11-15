@@ -1,6 +1,6 @@
 import { WeekDay } from './../../../../../models/weekDay.enum';
 import { CalendarDay } from './../../../../../models/calendarDay';
-import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TaskListService } from '../../task-list/time-tracker.service';
 
 
@@ -11,7 +11,7 @@ import { TaskListService } from '../../task-list/time-tracker.service';
   providers: [TaskListService]
 })
 
-export class CalendrDayComponent implements OnInit, OnDestroy {
+export class CalendrDayComponent implements OnInit {
 
   @Input() taskLoad = false;
   @Input() day: CalendarDay;
@@ -19,7 +19,6 @@ export class CalendrDayComponent implements OnInit, OnDestroy {
 
   isWeekEnd = false;
   isNow = false;
-  taskTime = 0;
 
   constructor(private taskService: TaskListService) { }
 
@@ -31,10 +30,7 @@ export class CalendrDayComponent implements OnInit, OnDestroy {
       this.taskService.getTasks(this.day.date)
         .then(response => {
           this.day.tasks = response;
-          this.taskTime = 0;
-          this.day.tasks.forEach(task => {
-            this.taskTime += task.time;
-          });
+          this.day.workTime = this.taskService.calcWorkTime(this.day.tasks);
         });
     }
   }

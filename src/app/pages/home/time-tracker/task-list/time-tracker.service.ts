@@ -18,6 +18,14 @@ export class TaskListService {
       && dateTwo.getDate() === day;
   }
 
+  calcWorkTime(tasks: Task[]): number {
+    let sum = 0;
+    tasks.forEach(task => {
+      sum += task.time;
+    });
+    return sum;
+  }
+
   getTasks(date: Date): Promise<Task[]> {
     return this.http.get<Task[]>('tasks', { params: { date: date.toString() }, /*observe: 'response'*/ })
       .toPromise();

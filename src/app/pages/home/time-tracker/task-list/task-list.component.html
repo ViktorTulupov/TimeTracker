@@ -1,5 +1,5 @@
 <div class="list-header">Task list:</div>
-<div *ngIf=!isNewTask>
+<div *ngIf="!isNewTask && day.date">
     <img src="img/plus.svg" (click)="newTask()" class="img-add">
 </div>
 <div *ngIf=isNewTask>
@@ -29,3 +29,6 @@
     </form>
 </div>
 <app-task *ngFor="let task of day?.tasks" [task]="task" (taskDeleteEvent)="taskDelete($event)"></app-task>
+<div *ngIf="day?.workTime" class="list-prev-footer">
+    <div class="list-footer">Work time: {{day?.workTime}}</div>
+</div>

@@ -2,9 +2,9 @@
                                                               'weekend': isWeekEnd, 
                                                               'selected': day.isSelect }">
     {{day.date | date: 'dd'}}
-    <app-task-indicator *ngIf="taskLoad" [ngClass]="{'deficiency': taskTime > 0, 
-                                                     'complete': taskTime === 8, 
-                                                     'upward': taskTime > 8,
-                                                     'excess': taskTime > 24 }">
+    <app-task-indicator *ngIf="taskLoad" [ngClass]="{'deficiency': day.workTime > 0, 
+                                                     'complete': day.workTime === 8, 
+                                                     'upward': day.workTime > 8,
+                                                     'excess': day.workTime > 24 }">
     </app-task-indicator>
 </div>

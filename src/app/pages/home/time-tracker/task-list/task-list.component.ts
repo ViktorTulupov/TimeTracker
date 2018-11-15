@@ -60,7 +60,7 @@ export class TaskListComponent implements OnInit {
       this.controls.comment.value);
 
     this.day.tasks.push(task);
-
+    this.day.workTime = this.taskService.calcWorkTime(this.day.tasks);
     this.rollbackTask();
 
     this.taskService.addTasks(task);
@@ -69,6 +69,7 @@ export class TaskListComponent implements OnInit {
   taskDelete(event: Task) {
     const index = this.day.tasks.indexOf(event);
     this.day.tasks.splice(index, 1);
+    this.day.workTime = this.taskService.calcWorkTime(this.day.tasks);
 
     this.taskService.delleteTasks(index);
   }

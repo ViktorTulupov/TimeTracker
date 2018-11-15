@@ -1,10 +1,13 @@
 import { Task } from './task';
 
 export class CalendarDay {
-    constructor(
-        public date: Date,
-        public tasks: Task[],
-        public isSelect: boolean = false
-    ) { }
 
+    public isSelect: boolean;
+    public workTime: number;
+
+    constructor(public date: Date,
+                public tasks: Task[]) {
+        this.isSelect = false;
+        this.workTime = 0;
+    }
 }

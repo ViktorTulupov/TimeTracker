@@ -70,7 +70,7 @@ export class CalendarComponent implements OnInit {
       const days: CalendarDay[] = [];
       for (let day = 0; day < 7; day++) {
         if (monthDay <= firstEmptyDays || monthDay > (daysInMonth + firstEmptyDays)) {
-          days.push(new CalendarDay(null, null, false));
+          days.push(new CalendarDay(null, null));
         } else {
           const date = new Date(this.year, this.month, (monthDay - firstEmptyDays));
           days.push(new CalendarDay(date, []));
