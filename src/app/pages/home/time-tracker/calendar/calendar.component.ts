@@ -16,7 +16,7 @@ export class CalendarComponent implements OnInit {
   @Input() month;
   @Input() year;
 
-  @Output() selectDateEvent = new EventEmitter<Task[]>();
+  @Output() selectDateEvent = new EventEmitter<CalendarDay>();
 
   weeks: CalendarDay[][];
 
@@ -73,7 +73,7 @@ export class CalendarComponent implements OnInit {
           days.push(new CalendarDay(null, null, false));
         } else {
           const date = new Date(this.year, this.month, (monthDay - firstEmptyDays));
-          days.push(new CalendarDay(date, this.taskService.getTasks(date)));
+          days.push(new CalendarDay(date, []));
         }
         monthDay++;
       }
@@ -89,7 +89,7 @@ export class CalendarComponent implements OnInit {
     });
     event.isSelect = true;
 
-    this.selectDateEvent.emit(event.tasks);
+    this.selectDateEvent.emit(event);
   }
 
 }

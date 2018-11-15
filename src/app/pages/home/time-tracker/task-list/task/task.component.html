@@ -1,1 +1,19 @@
-<p>{{task.project}} {{task.task}} {{task.comment}} - {{task.time}}</p>
+<div>
+    <label class="header">Project:</label>
+    <label class="data">{{task.project}}</label>
+</div>
+<div>
+    <label class="header">Task:</label>
+    <label class="data task">{{task.task}}</label>
+</div>
+<div>
+    <label class="header"> Time:</label>
+    <label class="data time">{{task.time}}</label>
+</div>
+<div>
+    <label class="header">Comment:</label>
+    <label class="data comment">{{task.comment}}</label>
+</div>
+<div>
+    <img src="img/close.svg" (click)="dellTask()">
+</div>

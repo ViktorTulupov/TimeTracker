@@ -1,6 +1,6 @@
 import { WeekDay } from './../../../../../models/weekDay.enum';
 import { CalendarDay } from './../../../../../models/calendarDay';
-import { Component, OnInit, Input, Output, EventEmitter, HostListener, HostBinding } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { TaskListService } from '../../task-list/time-tracker.service';
 
 
@@ -11,7 +11,7 @@ import { TaskListService } from '../../task-list/time-tracker.service';
   providers: [TaskListService]
 })
 
-export class CalendrDayComponent implements OnInit {
+export class CalendrDayComponent implements OnInit, OnDestroy {
 
   @Input() taskLoad = false;
   @Input() day: CalendarDay;
@@ -28,12 +28,14 @@ export class CalendrDayComponent implements OnInit {
       this.isWeekEnd = this.checkWeekEnd(this.day.date);
       this.isNow = this.taskService.compareDate(new Date(), this.day.date);
 
-      if (this.taskLoad && this.day.tasks) {
-        this.taskTime = 0;
-        this.day.tasks.forEach(task => {
-          this.taskTime += task.time;
+      this.taskService.getTasks(this.day.date)
+        .then(response => {
+          this.day.tasks = response;
+          this.taskTime = 0;
+          this.day.tasks.forEach(task => {
+            this.taskTime += task.time;
+          });
         });
-      }
     }
   }
 
@@ -45,6 +47,7 @@ export class CalendrDayComponent implements OnInit {
 
   selectDay(event: any) {
     this.selectDayEvent.emit(this.day);
+    console.log(this.day);
   }
 
 }

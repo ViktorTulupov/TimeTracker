@@ -1,3 +1,4 @@
+import { CalendarDay } from './../../../models/calendarDay';
 import { Task } from './../../../models/task';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,15 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TimeTrackerComponent implements OnInit {
 
-  tasks: Task[];
-
+  day: CalendarDay;
   constructor() {}
 
   ngOnInit() {
-    this.tasks = [];
   }
 
-  selectDate(event: Task[]) {
-    this.tasks = event;
+  selectDate(event: CalendarDay) {
+    this.day = event;
   }
 }

@@ -9,7 +9,7 @@ export class LoginService {
     private unAutorized = 'unautorized';
     private behaviorSubject: BehaviorSubject<string>;
 
-    constructor(private http: HttpClient, ) {
+    constructor(private http: HttpClient) {
         const loggedUser: User = JSON.parse(localStorage.getItem('loggedUser'));
         if (loggedUser) {
             this.behaviorSubject = new BehaviorSubject(loggedUser.name);

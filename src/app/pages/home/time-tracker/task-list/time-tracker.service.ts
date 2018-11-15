@@ -1,12 +1,13 @@
 import { Task } from '../../../../models/task';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskListService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   compareDate(dateOne: Date, dateTwo: Date): boolean {
     const year = dateOne.getFullYear();
@@ -17,13 +18,13 @@ export class TaskListService {
       && dateTwo.getDate() === day;
   }
 
-  getTasks(date: Date): Task[] {
-    if (this.compareDate(new Date(), date)) {
-      const task = new Task(new Date(), 'TimeTracker', '0001', 5, 'Create project');
-      const tasks = [task, task, task, task];
-      return tasks;
-    }
-    return null;
+  getTasks(date: Date): Promise<Task[]> {
+    return this.http.get<Task[]>('tasks', { params: { date: date.toString() }, /*observe: 'response'*/ })
+      .toPromise();
   }
+
+  delleteTasks(id: number) { }
+
+  addTasks(task: Task) { }
 
 }

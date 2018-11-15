@@ -1,3 +1,5 @@
+import { TaskListService } from './time-tracker.service';
+import { CalendarDay } from './../../../../models/calendarDay';
 import { Task } from './../../../../models/task';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -9,21 +11,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class TaskListComponent implements OnInit {
 
-  @Input() tasks: Task[];
+  @Input() day: CalendarDay;
 
   isNewTask = false;
   taskForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private taskService: TaskListService) { }
 
   ngOnInit() {
-    this.isNewTask = false;
-
-    if (!this.tasks) {
-      this.tasks = [];
-    }
-
     this.taskForm = this.formBuilder.group({
       project: ['', Validators.required],
       task: ['', Validators.required],
@@ -42,7 +38,7 @@ export class TaskListComponent implements OnInit {
     this.submitted = false;
     this.controls.project.setValue('');
     this.controls.task.setValue('');
-    this.controls.time.setValue('');
+    this.controls.time.setValue('0');
     this.controls.comment.setValue('');
   }
 
@@ -57,7 +53,24 @@ export class TaskListComponent implements OnInit {
       return;
     }
 
+    const task = new Task(this.day.date,
+      this.controls.project.value,
+      this.controls.task.value,
+      this.controls.time.value,
+      this.controls.comment.value);
+
+    this.day.tasks.push(task);
+
     this.rollbackTask();
+
+    this.taskService.addTasks(task);
+  }
+
+  taskDelete(event: Task) {
+    const index = this.day.tasks.indexOf(event);
+    this.day.tasks.splice(index, 1);
+
+    this.taskService.delleteTasks(index);
   }
 
 }

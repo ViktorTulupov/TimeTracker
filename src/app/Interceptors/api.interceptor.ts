@@ -1,3 +1,4 @@
+import { Task } from './../models/task';
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
@@ -34,8 +35,23 @@ export class ApiInterceptor implements HttpInterceptor {
                     };
                     return of(new HttpResponse(new CustomResponse(200, 'OK', body)));
                 } else {
-                    return throwError( new CustomResponse(400, 'Login or Password incorect', {}) );
+                    return throwError(new CustomResponse(400, 'Login or Password incorect', {}));
                 }
+            }
+
+            if (request.url === 'tasks' && request.method === 'GET') {
+
+
+                const task = new Task(new Date(), 'TimeTracker', '0001', 5, 'Create project');
+                const tasks = [task, task, task, task];
+
+                // const allTask: Task[] = JSON.parse(localStorage.getItem('tasks')) || [];
+
+                // const tasks = allTask.filter(task => {
+                //     return task.date === request.body.data;
+                // });
+
+                return of(new HttpResponse(new CustomResponse(200, 'OK', tasks)));
             }
 
             return next.handle(request);

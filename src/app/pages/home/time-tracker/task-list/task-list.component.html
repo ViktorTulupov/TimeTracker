@@ -28,4 +28,4 @@
         </div>
     </form>
 </div>
-<app-task *ngFor="let task of tasks" [task]="task"></app-task>
+<app-task *ngFor="let task of day?.tasks" [task]="task" (taskDeleteEvent)="taskDelete($event)"></app-task>
