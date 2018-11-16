@@ -23,7 +23,7 @@ export class TaskListComponent implements OnInit {
     this.taskForm = this.formBuilder.group({
       project: ['', [Validators.required, Validators.maxLength(15)]],
       task: ['', [Validators.required, Validators.maxLength(4)]],
-      time: [0, [Validators.min(0), Validators.max(24)]],
+      time: [8, [Validators.min(0), Validators.max(24)]],
       comment: ['', Validators.maxLength(20)]
     });
   }
@@ -38,7 +38,7 @@ export class TaskListComponent implements OnInit {
     this.submitted = false;
     this.controls.project.setValue('');
     this.controls.task.setValue('');
-    this.controls.time.setValue('0');
+    this.controls.time.setValue(8);
     this.controls.comment.setValue('');
   }
 

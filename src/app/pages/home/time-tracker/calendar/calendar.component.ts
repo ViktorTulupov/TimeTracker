@@ -1,3 +1,4 @@
+import { Month } from './../../../../models/month.enum';
 import { TaskListService } from '../time-tracker.service';
 import { WeekDay } from './../../../../models/weekDay.enum';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
@@ -12,16 +13,13 @@ import { CalendarDay } from './../../../../models/calendarDay';
 export class CalendarComponent implements OnInit {
 
   @Input() taskLoad;
-  @Input() month;
-  @Input() year;
-
   @Output() selectDateEvent = new EventEmitter<CalendarDay>();
 
+  month: Month;
+  year: number;
   weeks: CalendarDay[][];
 
-  constructor(private taskService: TaskListService ) {
-    this.weeks = [];
-  }
+  constructor(private taskService: TaskListService) { }
 
   ngOnInit() {
     if (!this.month || !this.year) {
@@ -33,7 +31,7 @@ export class CalendarComponent implements OnInit {
   }
 
   daysInMonth(): number {
-    const date = new Date(this.year, this.month - 1, 0);
+    const date = new Date(this.year, this.month + 1, 0);
     return date.getDate();
   }
 
@@ -59,6 +57,7 @@ export class CalendarComponent implements OnInit {
   }
 
   generateMonthData() {
+    this.weeks = [];
     const daysInMonth = this.daysInMonth();
     const firstEmptyDays = this.firstEmptyDays();
     const monthWeeks = (daysInMonth + firstEmptyDays) > 35 ? 6 : 5;
@@ -90,5 +89,4 @@ export class CalendarComponent implements OnInit {
 
     this.selectDateEvent.emit(event);
   }
-
 }

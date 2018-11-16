@@ -1,3 +1,4 @@
+import { InputDateComponent } from './calendar/input-date/input-date.component';
 import { TaskIndicatorComponent } from './calendar/task-indicator/task-indicator.component';
 import { TaskComponent } from './task-list/task/task.component';
 import { NgModule } from '@angular/core';
@@ -23,7 +24,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CalendarHeaderComponent,
     TaskListComponent,
     TaskComponent,
-    TaskIndicatorComponent
+    TaskIndicatorComponent,
+    InputDateComponent
   ]
 })
 export class TimeTrackerModule { }
