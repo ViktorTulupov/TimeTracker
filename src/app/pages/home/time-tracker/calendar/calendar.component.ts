@@ -1,5 +1,4 @@
-import { Task } from './../../../../models/task';
-import { TaskListService } from '../task-list/time-tracker.service';
+import { TaskListService } from '../time-tracker.service';
 import { WeekDay } from './../../../../models/weekDay.enum';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CalendarDay } from './../../../../models/calendarDay';

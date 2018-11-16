@@ -40,17 +40,37 @@ export class ApiInterceptor implements HttpInterceptor {
             }
 
             if (request.url === 'tasks' && request.method === 'GET') {
-                // last will delete
-                const task = new Task(new Date(), 'TimeTracker', '0001', 5, 'Create project');
-                const tasks = [task, task, task, task];
-
-                // const allTask: Task[] = JSON.parse(localStorage.getItem('tasks')) || [];
-
-                // const tasks = allTask.filter(task => {
-                //     return task.date === request.body.data;
-                // });
-
+                const allTask: Task[] = JSON.parse(localStorage.getItem('tasks')) || [];
+                const tasks = allTask.filter(task => {
+                    const param = request.params.get('date');
+                    const date = new Date(param);
+                    const taskDate = new Date(task.date);
+                    return taskDate.getDate() === date.getDate()
+                        && taskDate.getMonth() === date.getMonth()
+                        && taskDate.getFullYear() === date.getFullYear();
+                });
                 return of(new HttpResponse(new CustomResponse(200, 'OK', tasks)));
+            }
+
+            if (request.url === 'tasks' && request.method === 'POST') {
+                let allTask: Task[] = JSON.parse(localStorage.getItem('tasks')) || [];
+                let task: Task = request.body.task;
+                task.id = allTask.length;
+                allTask.push(task);
+                localStorage.setItem('tasks', JSON.stringify(allTask));
+                return of(new HttpResponse(new CustomResponse(200, 'OK', { id: task.id })));
+            }
+
+            if (request.url === 'tasks' && request.method === 'DELETE') {
+                let allTask: Task[] = JSON.parse(localStorage.getItem('tasks')) || [];
+                const dellTask = allTask.filter(task => {
+                    const id = request.params.get('id');
+                    return task.id.toString() === id;
+                });
+                const index = allTask.indexOf(dellTask[0]);
+                allTask.splice(index, 1);
+                localStorage.setItem('tasks', JSON.stringify(allTask));
+                return of(new HttpResponse(new CustomResponse(200, 'OK', null)));
             }
 
             return next.handle(request);

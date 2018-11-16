@@ -21,7 +21,6 @@ export class NotificationComponent implements OnInit, OnDestroy {
             .subject
             .subscribe(data => {
                 this.notification = data;
-                console.log(this.notification);
             });
     }
 

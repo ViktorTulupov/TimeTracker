@@ -1,7 +1,7 @@
 import { WeekDay } from './../../../../../models/weekDay.enum';
 import { CalendarDay } from './../../../../../models/calendarDay';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { TaskListService } from '../../task-list/time-tracker.service';
+import { TaskListService } from '../../time-tracker.service';
 
 
 @Component({
@@ -43,7 +43,6 @@ export class CalendrDayComponent implements OnInit {
 
   selectDay(event: any) {
     this.selectDayEvent.emit(this.day);
-    console.log(this.day);
   }
 
 }

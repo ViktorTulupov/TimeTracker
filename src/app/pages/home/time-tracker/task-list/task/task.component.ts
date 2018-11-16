@@ -15,6 +15,9 @@ export class TaskComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if (!this.task.comment) {
+      this.task.comment = '-';
+    }
   }
 
   dellTask() {

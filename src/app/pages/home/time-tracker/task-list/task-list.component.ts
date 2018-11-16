@@ -1,4 +1,4 @@
-import { TaskListService } from './time-tracker.service';
+import { TaskListService } from '../time-tracker.service';
 import { CalendarDay } from './../../../../models/calendarDay';
 import { Task } from './../../../../models/task';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
@@ -63,15 +63,19 @@ export class TaskListComponent implements OnInit {
     this.day.workTime = this.taskService.calcWorkTime(this.day.tasks);
     this.rollbackTask();
 
-    this.taskService.addTasks(task);
+    this.taskService.addTasks(task)
+      .then(response => {
+        task.id = response.id;
+      });
   }
 
   taskDelete(event: Task) {
-    const index = this.day.tasks.indexOf(event);
-    this.day.tasks.splice(index, 1);
-    this.day.workTime = this.taskService.calcWorkTime(this.day.tasks);
-
-    this.taskService.delleteTasks(index);
+    this.taskService.delleteTasks(event.id)
+      .then(ersponse => {
+        const index = this.day.tasks.indexOf(event);
+        this.day.tasks.splice(index, 1);
+        this.day.workTime = this.taskService.calcWorkTime(this.day.tasks);
+      });
   }
 
 }
