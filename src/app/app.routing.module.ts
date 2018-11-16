@@ -5,7 +5,6 @@ import { LoggedUserGuard } from './components/logged-user/logged-user.guard';
 import { HomeModule } from './pages/home/home.module';
 
 const routes: Routes = [
-  // { path: 'home', loadChildren: './pages/home/home.module#HomeModule', canActivate: [LoggedUserGuard] },
   { path: 'home', loadChildren: () => HomeModule, canActivate: [LoggedUserGuard] },
   { path: 'login', component: LoginComponent },
   { path: '**', redirectTo: 'home' }

@@ -15,6 +15,15 @@ export class TaskComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    if (!this.task.project) {
+      this.task.project = '-';
+    }
+    if (!this.task.task) {
+      this.task.task = '-';
+    }
+    if (!this.task.time) {
+      this.task.time = 0;
+    }
     if (!this.task.comment) {
       this.task.comment = '-';
     }

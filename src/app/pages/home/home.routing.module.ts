@@ -2,13 +2,11 @@ import { LoggedUserGuard } from './../../components/logged-user/logged-user.guar
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './home.component';
 import { Routes, RouterModule } from '@angular/router';
-import { CalendarComponent } from './time-tracker/calendar/calendar.component';
 import { TimeTrackerComponent  } from './time-tracker/time-tracker.component';
 
 const routesChildren: Routes = [
-  { path: 'calendar', component: CalendarComponent, canActivate: [LoggedUserGuard]},
-  { path: 'tracker', component: TimeTrackerComponent, canActivate: [LoggedUserGuard]},
-  { path: '**', redirectTo: 'tracker' }
+  { path: 'calendar', component: TimeTrackerComponent, canActivate: [LoggedUserGuard]},
+  { path: '**', redirectTo: 'calendar' }
 ];
 
 const routes: Routes = [

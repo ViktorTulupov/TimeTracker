@@ -18,7 +18,7 @@
         </div>
         <div>
             <label for="comment">Comment:</label>
-            <input type="text" formControlName="comment" class="in-comment" />
+            <input type="text" formControlName="comment" class="in-comment" [ngClass]="{ 'error': submitted && controls.comment.errors }"/>
         </div>
         <div>
             <img src="img/checked.svg" (click)="createNewTask()">
