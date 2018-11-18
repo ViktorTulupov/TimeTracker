@@ -1,7 +1,7 @@
 import { TaskListService } from '../time-tracker.service';
 import { CalendarDay } from './../../../../models/calendarDay';
 import { Task } from './../../../../models/task';
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({

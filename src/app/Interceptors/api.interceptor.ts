@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { delay, mergeMap, materialize, dematerialize, map, first } from 'rxjs/operators';
+import { delay, mergeMap, materialize, dematerialize, map } from 'rxjs/operators';
 import { User } from '../models/user';
 import { CustomResponse } from '../models/customResponse';
 

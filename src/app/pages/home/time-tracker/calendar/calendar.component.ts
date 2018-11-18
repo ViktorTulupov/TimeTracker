@@ -89,4 +89,9 @@ export class CalendarComponent implements OnInit {
 
     this.selectDateEvent.emit(event);
   }
+
+  monthChange() {
+    this.generateMonthData();
+    this.selectDateEvent.emit(new CalendarDay(null, []));
+  }
 }

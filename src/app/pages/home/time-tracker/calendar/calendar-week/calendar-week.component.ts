@@ -1,5 +1,5 @@
 import { CalendarDay } from '../../../../../models/calendarDay';
-import { Component, OnInit, Input, Output, EventEmitter, HostListener, HostBinding } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-calendar-week',

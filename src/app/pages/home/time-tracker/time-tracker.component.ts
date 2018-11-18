@@ -1,5 +1,4 @@
 import { CalendarDay } from './../../../models/calendarDay';
-import { Task } from './../../../models/task';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

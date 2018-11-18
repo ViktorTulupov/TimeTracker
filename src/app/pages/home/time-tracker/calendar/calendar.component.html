@@ -1,5 +1,5 @@
 <div>
-    <app-input-date [(month)]="month" [(year)]="year" (dateChange)="generateMonthData()"></app-input-date>
+    <app-input-date [(month)]="month" [(year)]="year" (dateChange)="monthChange()"></app-input-date>
     <app-calendar-header></app-calendar-header>
     <app-calendar-week *ngFor="let week of weeks" [week]=week [taskLoad]="taskLoad" (selecWeekDayEvent)="selectDate($event)"></app-calendar-week>
 </div>
