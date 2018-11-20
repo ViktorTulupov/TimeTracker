@@ -6,6 +6,10 @@
     padding: 8px 0px 8px 0px; 
 }
 
+:host:hover {
+    background-color:rgba(0, 123, 255, 0.3);
+}
+
 div {
     display: flex;
     flex-direction: column;
