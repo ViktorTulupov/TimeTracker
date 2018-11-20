@@ -21,8 +21,8 @@ export class TaskListComponent implements OnInit {
 
   ngOnInit() {
     this.taskForm = this.formBuilder.group({
-      project: ['', [Validators.required, Validators.maxLength(50)]],
-      task: ['', [Validators.required, Validators.maxLength(4)]],
+      project: ['', Validators.maxLength(50)],
+      task: ['', Validators.maxLength(4)],
       time: [8, [Validators.min(0), Validators.max(24)]],
       comment: ['', Validators.maxLength(200)]
     });
@@ -55,7 +55,7 @@ export class TaskListComponent implements OnInit {
 
     const task = new Task(this.day.date,
       this.controls.project.value,
-      `#${this.controls.task.value}`,
+      this.controls.task.value,
       this.controls.time.value,
       this.controls.comment.value);
 
