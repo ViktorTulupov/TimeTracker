@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 8px 0px 8px 0px; 
+    padding: 8px 8px 8px 8px; 
 }
 
 :host:hover {
@@ -21,8 +21,11 @@ div {
 img {
     width: 18px;
     height: 18px;
-    margin-right: 8px;
     padding: 0px 0px;
+}
+
+div.img-btn {
+    margin-right: 0px; 
 }
 
 label.header {
